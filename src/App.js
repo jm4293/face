@@ -14,9 +14,6 @@ function App() {
 
   useEffect(() => {
     async function setup() {
-      await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
-      // 표정 감지용 모델도 미리 로드
-      await faceapi.nets.faceExpressionNet.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       if (videoRef.current) videoRef.current.srcObject = stream;
     }
@@ -26,6 +23,7 @@ function App() {
   useEffect(() => {
     movingDetect(videoRef, canvasRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef);
     smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef);
+
     return () => {
       clearInterval(moveIntervalIdRef.current);
       clearInterval(smileIntervalIdRef.current);

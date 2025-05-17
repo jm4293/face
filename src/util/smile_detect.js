@@ -17,7 +17,9 @@ export async function smileDetect(videoRef, alertedRef, intervalIdRef) {
         const expressions = detections[0].expressions;
         if (expressions && expressions.happy > 0.7 && !alertedRef.current) {
           alertedRef.current = true;
-          alert("웃고 있네요!");
+
+          alert("웃냐?");
+
           setTimeout(() => {
             alertedRef.current = false;
           }, 2000);
