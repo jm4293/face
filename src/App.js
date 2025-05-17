@@ -45,6 +45,33 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const visited = localStorage.getItem("key");
+
+    if (visited) {
+      switch (visited) {
+        case "move":
+          setModalMsg("ADHD 왔네");
+          setModalOpen(true);
+          break;
+        case "smile":
+          setModalMsg("치료사 왔네");
+          setModalOpen(true);
+          break;
+        default:
+          break;
+      }
+
+      localStorage.removeItem("key");
+    }
+
+    // if (visited === "visited") {
+    //   setModalMsg("다시 방문해주셔서 감사합니다!");
+    //   setModalOpen(true);
+    //   localStorage.removeItem("smileRedirect"); // 한 번만 띄우고 싶으면 삭제
+    // }
+  }, []);
+
+  useEffect(() => {
     if (modalOpen) {
       const timer = setTimeout(() => setModalOpen(false), 1000); // 3초 뒤 닫힘
       return () => clearTimeout(timer);
@@ -76,7 +103,6 @@ function App() {
         >
           <div style={{ background: "#fff", padding: 24, borderRadius: 8, minWidth: 400, textAlign: "center" }}>
             <img
-              // src="https://media.tenor.com/2QG9b6pQbJwAAAAC/%EC%9B%83%EC%9D%8C%EB%B2%A8-%EA%B5%B0%EB%8C%80.gif"
               src="https://s.gae9.com/trend/9e5cd91b9d186c46.orig"
               alt="웃음벨 군대"
               style={{ width: "100%", maxWidth: 320, marginTop: 8 }}

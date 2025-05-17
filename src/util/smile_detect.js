@@ -31,6 +31,7 @@ export async function smileDetect(videoRef, alertedRef, intervalIdRef, setShowSm
           if (smileCount >= 2) {
             showModal("잘 웃네");
             setTimeout(() => {
+              localStorage.setItem("key", "smile");
               window.location.href = "https://www.kpei.co.kr/license/license_112.asp";
             }, 1000);
           }

@@ -28,6 +28,7 @@ export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdR
             if (moveCount >= 2) {
               showModal("문제가 있네");
               setTimeout(() => {
+                localStorage.setItem("key", "move");
                 window.location.href = "https://www.adhd.or.kr/search/search01.php";
               }, 1000);
             }
