@@ -1,6 +1,6 @@
 import * as faceapi from "@vladmandic/face-api";
 
-export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdRef, showModal) {
+export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdRef, showModal, setShowSmileGif) {
   await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
 
   let moveCount = 0; // 내부에서 카운트 관리
@@ -22,6 +22,7 @@ export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdR
           if (dist > 50 && !alertedRef.current) {
             alertedRef.current = true;
             showModal("움직이네?");
+            setShowSmileGif(false); // 움직임 감지 시 GIF 숨김
 
             moveCount += 1;
 

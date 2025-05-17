@@ -35,7 +35,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    movingDetect(videoRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef, showModal);
+    movingDetect(videoRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef, showModal, setShowSmileGif);
     smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef, setShowSmileGif, showModal); // showModal 추가
 
     return () => {
@@ -63,12 +63,6 @@ function App() {
 
       localStorage.removeItem("key");
     }
-
-    // if (visited === "visited") {
-    //   setModalMsg("다시 방문해주셔서 감사합니다!");
-    //   setModalOpen(true);
-    //   localStorage.removeItem("smileRedirect"); // 한 번만 띄우고 싶으면 삭제
-    // }
   }, []);
 
   useEffect(() => {
