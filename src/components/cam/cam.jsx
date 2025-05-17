@@ -5,8 +5,11 @@ import { smileDetect } from "../../util/smile_detect";
 
 import "./cam.css";
 import Modal from "../Modal";
+import { useNavigate } from "react-router-dom";
 
-export default function Cam({ onEndContest }) {
+export default function Cam() {
+  const navigate = useNavigate();
+
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const prevBoxRef = useRef(null);
@@ -114,7 +117,7 @@ export default function Cam({ onEndContest }) {
         <canvas ref={canvasRef} style={{ display: "none" }} />
       </div>
 
-      <button className="end-button" onClick={onEndContest}>
+      <button className="end-button" onClick={() => navigate("/")}>
         대회 종료하기
       </button>
 

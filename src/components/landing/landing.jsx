@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import "./landing.css";
 
-export default function Lading({ setIsLanding }) {
+export default function Lading() {
+  const navigate = useNavigate();
   const handleStart = () => {
-    setIsLanding(false);
+    navigate("/cam");
   };
 
   return (
