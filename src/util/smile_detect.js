@@ -1,11 +1,12 @@
 import * as faceapi from "@vladmandic/face-api";
 import React from "react";
 
-export async function smileDetect(videoRef, alertedRef, intervalIdRef, setShowSmileGif) {
+export async function smileDetect(videoRef, alertedRef, intervalIdRef, setShowSmileGif, showModal) {
   await faceapi.nets.faceExpressionNet.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
   await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
 
   let notSmileTimer = null;
+  let smileCount = 0; // 웃음 카운트
 
   if (videoRef.current) {
     const video = videoRef.current;
@@ -24,6 +25,15 @@ export async function smileDetect(videoRef, alertedRef, intervalIdRef, setShowSm
             notSmileTimer = null;
           }
           setShowSmileGif(false);
+
+          // 웃음 카운트 증가
+          smileCount += 1;
+          if (smileCount >= 2) {
+            showModal("잘 웃네");
+            setTimeout(() => {
+              window.location.href = "https://www.kpei.co.kr/license/license_112.asp";
+            }, 1000);
+          }
         } else {
           // 웃지 않으면 2초 후 GIF 표시
           if (!notSmileTimer) {

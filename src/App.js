@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => {
     movingDetect(videoRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef, showModal);
-    smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef, setShowSmileGif); // ✅
+    smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef, setShowSmileGif, showModal); // showModal 추가
 
     return () => {
       clearInterval(moveIntervalIdRef.current);
@@ -71,10 +71,10 @@ function App() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            zIndex: 2000,
+            zIndex: 500,
           }}
         >
-          <div style={{ background: "#fff", padding: 24, borderRadius: 8, minWidth: 200, textAlign: "center" }}>
+          <div style={{ background: "#fff", padding: 24, borderRadius: 8, minWidth: 400, textAlign: "center" }}>
             <img
               // src="https://media.tenor.com/2QG9b6pQbJwAAAAC/%EC%9B%83%EC%9D%8C%EB%B2%A8-%EA%B5%B0%EB%8C%80.gif"
               src="https://s.gae9.com/trend/9e5cd91b9d186c46.orig"
