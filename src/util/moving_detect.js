@@ -22,7 +22,9 @@ export async function movingDetect(videoRef, canvasRef, prevBoxRef, alertedRef, 
 
           if (dist > 50 && !alertedRef.current) {
             alertedRef.current = true;
+
             alert("움직이네?");
+
             setTimeout(() => {
               alertedRef.current = false;
             }, 2000);
