@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    movingDetect(videoRef, canvasRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef);
+    movingDetect(videoRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef);
     smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef);
 
     return () => {

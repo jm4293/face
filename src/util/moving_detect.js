@@ -1,19 +1,14 @@
 import * as faceapi from "@vladmandic/face-api";
 
-export async function movingDetect(videoRef, canvasRef, prevBoxRef, alertedRef, intervalIdRef) {
+export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdRef) {
   // 얼굴 감지 모델을 반드시 로드해야 함
   await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
 
-  if (videoRef.current && canvasRef.current) {
+  if (videoRef.current) {
     const video = videoRef.current;
-    const canvas = canvasRef.current;
-    canvas.width = video.width;
-    canvas.height = video.height;
 
     intervalIdRef.current = setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions());
-      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-      faceapi.draw.drawDetections(canvas, detections);
 
       if (detections.length > 0) {
         const box = detections[0].box;
