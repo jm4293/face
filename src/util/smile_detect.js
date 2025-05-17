@@ -1,8 +1,11 @@
 import * as faceapi from "@vladmandic/face-api";
+import React from "react";
 
-export async function smileDetect(videoRef, alertedRef, intervalIdRef, showModal) {
+export async function smileDetect(videoRef, alertedRef, intervalIdRef, setShowSmileGif) {
   await faceapi.nets.faceExpressionNet.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
   await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
+
+  let notSmileTimer = null;
 
   if (videoRef.current) {
     const video = videoRef.current;
@@ -14,14 +17,20 @@ export async function smileDetect(videoRef, alertedRef, intervalIdRef, showModal
 
       if (detections.length > 0) {
         const expressions = detections[0].expressions;
-        if (expressions && expressions.happy > 0.7 && !alertedRef.current) {
-          alertedRef.current = true;
-
-          showModal("웃네?");
-
-          setTimeout(() => {
-            alertedRef.current = false;
-          }, 2000);
+        if (expressions && expressions.happy > 0.7) {
+          // 웃고 있으면 타이머 초기화 및 GIF 숨김
+          if (notSmileTimer) {
+            clearTimeout(notSmileTimer);
+            notSmileTimer = null;
+          }
+          setShowSmileGif(false);
+        } else {
+          // 웃지 않으면 2초 후 GIF 표시
+          if (!notSmileTimer) {
+            notSmileTimer = setTimeout(() => {
+              setShowSmileGif(true);
+            }, 2000);
+          }
         }
       }
     }, 300);

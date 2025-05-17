@@ -17,6 +17,9 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
 
+  // 2초 이상 움직이지 않으면 모달 띄우기
+  const [showSmileGif, setShowSmileGif] = useState(false);
+
   // 모달을 띄우는 함수
   const showModal = (msg) => {
     setModalMsg(msg);
@@ -33,7 +36,8 @@ function App() {
 
   useEffect(() => {
     movingDetect(videoRef, prevBoxRef, moveAlertedRef, moveIntervalIdRef, showModal);
-    smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef, showModal);
+    smileDetect(videoRef, smileAlertedRef, smileIntervalIdRef, setShowSmileGif); // ✅
+
     return () => {
       clearInterval(moveIntervalIdRef.current);
       clearInterval(smileIntervalIdRef.current);
@@ -54,6 +58,32 @@ function App() {
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         {modalMsg}
       </Modal>
+
+      {showSmileGif && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 2000,
+          }}
+        >
+          <div style={{ background: "#fff", padding: 24, borderRadius: 8, minWidth: 200, textAlign: "center" }}>
+            <img
+              // src="https://media.tenor.com/2QG9b6pQbJwAAAAC/%EC%9B%83%EC%9D%8C%EB%B2%A8-%EA%B5%B0%EB%8C%80.gif"
+              src="https://s.gae9.com/trend/9e5cd91b9d186c46.orig"
+              alt="웃음벨 군대"
+              style={{ width: "100%", maxWidth: 320, marginTop: 8 }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
