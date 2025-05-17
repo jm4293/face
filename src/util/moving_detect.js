@@ -23,12 +23,13 @@ export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdR
             alertedRef.current = true;
             showModal("움직이네?");
 
-            // 내부 카운트 증가
             moveCount += 1;
 
-            // 2번 이상이면 리다이렉트
             if (moveCount >= 2) {
-              window.location.href = "https://www.adhd.or.kr/search/search01.php";
+              showModal("문제가 있네");
+              setTimeout(() => {
+                window.location.href = "https://www.adhd.or.kr/search/search01.php";
+              }, 1000);
             }
 
             setTimeout(() => {
