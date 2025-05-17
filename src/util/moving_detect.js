@@ -1,7 +1,6 @@
 import * as faceapi from "@vladmandic/face-api";
 
-export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdRef) {
-  // 얼굴 감지 모델을 반드시 로드해야 함
+export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdRef, showModal) {
   await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
 
   if (videoRef.current) {
@@ -21,7 +20,7 @@ export async function movingDetect(videoRef, prevBoxRef, alertedRef, intervalIdR
           if (dist > 50 && !alertedRef.current) {
             alertedRef.current = true;
 
-            alert("움직이네?");
+            showModal("움직이네?");
 
             setTimeout(() => {
               alertedRef.current = false;

@@ -1,7 +1,6 @@
 import * as faceapi from "@vladmandic/face-api";
 
-export async function smileDetect(videoRef, alertedRef, intervalIdRef) {
-  // 얼굴 랜드마크와 표정 모델을 반드시 로드해야 함
+export async function smileDetect(videoRef, alertedRef, intervalIdRef, showModal) {
   await faceapi.nets.faceExpressionNet.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
   await faceapi.nets.tinyFaceDetector.loadFromUri("https://justadudewhohacks.github.io/face-api.js/models");
 
@@ -18,7 +17,7 @@ export async function smileDetect(videoRef, alertedRef, intervalIdRef) {
         if (expressions && expressions.happy > 0.7 && !alertedRef.current) {
           alertedRef.current = true;
 
-          alert("웃냐?");
+          showModal("웃네?");
 
           setTimeout(() => {
             alertedRef.current = false;
