@@ -1,0 +1,87 @@
+/* Contest Page styles */
+.contest-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.contest-title {
+  color: #4a90e2;
+  margin-bottom: 30px;
+}
+
+.webcam-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 30px;
+}
+
+.webcam-video {
+  width: 100%;
+  border-radius: 10px;
+  border: 3px solid #4a90e2;
+}
+
+.wave-text {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.wave-text span {
+  display: inline-block;
+  animation: wave-animation 1.5s infinite;
+  animation-fill-mode: both;
+}
+
+.wave-text span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.wave-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.wave-text span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes wave-animation {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.dots-animation {
+  display: inline-block;
+}
+
+.dots-animation span {
+  opacity: 0;
+  animation: dots 1.4s infinite;
+  animation-fill-mode: both;
+}
+
+.dots-animation span:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.dots-animation span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.dots-animation span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes dots {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}

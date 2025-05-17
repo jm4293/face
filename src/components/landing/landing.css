@@ -1,0 +1,24 @@
+/* Landing Page styles */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.start-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.start-button:hover {
+  background-color: #3a7bc8;
+}
